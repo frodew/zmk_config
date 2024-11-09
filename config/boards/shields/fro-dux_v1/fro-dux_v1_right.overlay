@@ -1,0 +1,5 @@
+#include "fro-dux_v1.dtsi"
+
+&default_transform {
+  col-offset = <18>;
+};

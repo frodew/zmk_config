@@ -1,0 +1,5 @@
+config SHIELD_FRO_DUX_V1_LEFT
+	def_bool $(shields_list_contains,fro-dux_v1_left)
+
+config SHIELD_FRO_DUX_V1_RIGHT
+	def_bool $(shields_list_contains,fro-dux_v1_right)
