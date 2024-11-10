@@ -56,7 +56,7 @@ MAKE_HRM(hmt, &kp, &kp, KEYS_L KEYS_R)  // thumb HRMs
 
 /* Combos and leader key sequences */
 
-#include "combos.dtsi"  // must be sourced after HRM-combo hack
+// #include "combos.dtsi"  // must be sourced after HRM-combo hack
 
 /* Caps- and num-word */
 
@@ -144,12 +144,12 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 		base_layer {
 			bindings = <
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
-				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
+                   &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
+                   &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
+                   &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
+				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &hmt FN RET     &lt_spc NAV     &hmt UML ESC    /* &            & */
 			>;
-    };
+		};
 
     nav_layer {
       bindings = <
