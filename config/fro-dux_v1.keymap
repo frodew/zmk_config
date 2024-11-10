@@ -9,7 +9,7 @@
 
 /* Define layer names */
 
-// #define DEF 0
+#define DEF 0
 #define NAV 1
 #define FN 2
 #define NUM 3
