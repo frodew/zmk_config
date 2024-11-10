@@ -13,7 +13,7 @@
 #define NAV 1
 #define FN 2
 #define NUM 3
-// #define UML 4
+#define UML 4
 
 /* Global settings */
 
@@ -95,11 +95,11 @@ ZMK_TAP_DANCE(num_dance,
 
 // tap: comma | shift + tap: ! | ctrl + shift + tap: !
 SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
-SIMPLE_MORPH(comma_inner_morph, CTL, &kp EXCLAMATION, &kp W)
+SIMPLE_MORPH(comma_inner_morph, CTL, &kp EXCLAMATION, &kp EXCLAMATION)
 
 // tap: dot | shift + tap: ? | ctrl + shift + tap: ?
 SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
-SIMPLE_MORPH(dot_inner_morph, CTL, &kp QUESTION, &kp W)
+SIMPLE_MORPH(dot_inner_morph, CTL, &kp QUESTION, &kp QUESTION)
 
 // tap: slash | shift + tap: @
 SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp AT)
@@ -147,7 +147,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                    &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
                    &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
                    &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
-				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &hmt FN RET     &lt_spc NAV     &kp ESC    /* &            & */
+				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &hmt FN RET     &lt_spc NAV     &sl UML         /* &            & */
 			>;
 		};
 
@@ -178,5 +178,13 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 			>;
 		};
 
-    	};
+    umlaut_layer {
+			bindings = <
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &de_ue          &trans          &trans
+                   &de_ae         &trans          &de_eszett      &trans          &trans          &trans          &trans          &trans          &trans          &de_oe
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
+				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
+			>;
+	  };
+	};
 };
