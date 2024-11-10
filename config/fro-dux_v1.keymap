@@ -9,11 +9,11 @@
 
 /* Define layer names */
 
-#define DEF 0
-#define NAV 1
-#define FN 2
-#define NUM 3
-#define UML 4
+// #define DEF 0
+#define NAV 0
+#define FN 1
+#define NUM 2
+#define UML 3
 
 /* Global settings */
 
@@ -141,7 +141,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 / {
   keymap {
 		compatible = "zmk,keymap";
-
+/*
 		base_layer {
 			bindings = <
                    &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
@@ -150,7 +150,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &hmt FN RET     &lt_spc NAV     &hmt UML ESC    /* &            & */
 			>;
 		};
-
+*/
     nav_layer {
       bindings = <
                    &trans         &trans          &trans          &trans          &trans          &kp HOME        &kp PG_DN       &kp PG_UP       &kp END         &trans
@@ -180,8 +180,8 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
     umlaut_layer {
 			bindings = <
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &de_ue          &trans          &trans
+                   &de_ae         &trans          &de_eszett      &trans          &trans          &trans          &trans          &trans          &trans          &de_oe
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
