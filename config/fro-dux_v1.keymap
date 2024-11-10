@@ -137,7 +137,8 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 /* Keymap */
 
-	keymap {
+/ {
+  keymap {
 		compatible = "zmk,keymap";
 
 		base_layer {
