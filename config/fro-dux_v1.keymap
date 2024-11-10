@@ -104,6 +104,7 @@ SIMPLE_MORPH(dot_inner_morph, CTL, &kp QUESTION, &kp QUESTION)
 // tap: slash | shift + tap: @
 SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp AT)
 
+/*
 // tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_HOLD_TAP(lt_spc,
     flavor = "balanced";
@@ -117,6 +118,7 @@ ZMK_MACRO(dot_spc,
     tap-ms = <5>;
     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
 )
+*/
 
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
 ZMK_MOD_MORPH(bs_del,
@@ -147,7 +149,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                    &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
                    &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
                    &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
-				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &hmt FN RET     &lt_spc NAV     &hmt UML ESC    /* &            & */
+				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &hmt FN RET     &hmt NAV SPACE  &hmt UML ESC    /* &            & */
 			>;
 		};
 

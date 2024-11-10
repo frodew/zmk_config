@@ -13,10 +13,6 @@ manifest:
       remote: urob
       revision: main
       path: modules/helpers
-    - name: zmk-tri-state
-      remote: urob
-      revision: main
-      path: modules/tri-state
     - name: zmk
       remote: urob
       revision: going-modular
