@@ -37,7 +37,7 @@
 
         COMBO(colon, &kp COLON, 2 3, 60)
 
-        COMBO(colon, &kp ESC, 22 23, 60)
+        COMBO(esc, &kp ESC, 22 23, 60)
 
         COMBO(caps_word_right, &caps_word, 27 28, 60)
         COMBO(caps_word_left, &caps_word, 21 22, 60)
