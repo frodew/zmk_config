@@ -5,10 +5,6 @@ manifest:
     - name: urob
       url-base: https://github.com/urob
   projects:
-    - name: zmk
-      remote: zmkfirmware
-      revision: main
-      import: app/west.yml
     - name: zmk-auto-layer
       remote: urob
       revision: main
@@ -17,5 +13,11 @@ manifest:
       remote: urob
       revision: main
       path: modules/helpers
+    - name: zmk
+      revision: going-modular
+      path: .
+      import:
+        file: app/west.yml
+        path-prefix: zmk
   self:
     path: config
