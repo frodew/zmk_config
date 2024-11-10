@@ -56,7 +56,7 @@ MAKE_HRM(hmt, &kp, &kp, KEYS_L KEYS_R)  // thumb HRMs
 
 /* Combos and leader key sequences */
 
-#include "combos.dtsi"  // must be sourced after HRM-combo hack
+// #include "combos.dtsi"  // must be sourced after HRM-combo hack
 
 /* Caps- and num-word */
 
