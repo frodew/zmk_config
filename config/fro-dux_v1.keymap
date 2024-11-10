@@ -90,6 +90,8 @@ ZMK_TAP_DANCE(num_dance,
         bindings = <BINDING1>, <BINDING2>; \
     )
 
+/* - used on keymap - */
+
 // tap: comma | shift + tap: ! | ctrl + shift + tap: !
 SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
 SIMPLE_MORPH(comma_inner_morph, CTL, &kp EXCLAMATION, &kp EXCLAMATION)
@@ -126,6 +128,14 @@ ZMK_MOD_MORPH(bs_del,
 / { macros { u_macro_u_bt_sel_1: u_macro_u_bt_sel_1 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 1 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_1: u_bt_sel_1 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 1>, <&u_macro_u_bt_sel_1>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 / { macros { u_macro_u_bt_sel_2: u_macro_u_bt_sel_2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 2 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_2: u_bt_sel_2 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&u_macro_u_bt_sel_2>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 / { macros { u_macro_u_bt_sel_3: u_macro_u_bt_sel_3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 3 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_3: u_bt_sel_3 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&u_macro_u_bt_sel_3>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
+
+/* - used in combos - */
+
+// tap: left/right parenthesis | shft + tap: less-than/greater-than
+SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
+SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
+
+/* Keymap */
 
 	keymap {
 		compatible = "zmk,keymap";
