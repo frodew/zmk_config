@@ -4,6 +4,7 @@
 
 #include <behaviors/num_word.dtsi> // requires auto-layer module in west.yml
 
+#define HOST_OS 1 // for Linux
 #include "zmk-helpers/helper.h" // requires helper module in west.yml
 #include "zmk-helpers/unicode-chars/german.dtsi" // requires helper module in west.yml
 
