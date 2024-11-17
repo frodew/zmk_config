@@ -1,0 +1,17 @@
+if SHIELD_FRO_DUX_V1_LEFT
+
+# Name must be less than 16 characters long!
+config ZMK_KEYBOARD_NAME
+    default "fro-dux v1"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_FRO_DUX_V1_LEFT || SHIELD_FRO_DUX_V1_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif

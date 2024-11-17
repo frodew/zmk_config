@@ -1,0 +1,56 @@
+/*                  KEY POSITIONS
+
+   ╭────────────────────╮ ╭────────────────────╮
+   │  0   1   2   3   4 │ │  5   6   7   8   9 │
+   │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
+   │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
+   ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
+           ╰────────────╯ ╰────────────╯        */
+
+#define COMBO_TERM_FAST 18
+#define COMBO_TERM_SLOW 30
+
+#define COMBO_IDLE_FAST 150
+#define COMBO_IDLE_SLOW 50
+
+/* Horizontal combos - left hand */
+
+ZMK_COMBO(pcman, &hml LA(LGUI)LG(C), 10 11,  DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST) //hrm combo
+ZMK_COMBO(tab,   &hml LC(LALT)TAB,   11 12,  DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST) //hrm combo
+ZMK_COMBO(esc,   &hml LS(LCTL)ESC,   12 13,  DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST) //hrm combo
+
+ZMK_COMBO(cut,   &kp LC(X),    20 21,    DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(copy,  &kp LC(INS),  21 22,    DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(paste, &kp LS(INS),  22 23,    DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+/* Horizontal combos - right hand */
+ZMK_COMBO(bspc,  &kp BSPC,     6 7,      DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(del,   &kp DEL,      7 8,      DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+ZMK_COMBO(lpar,  &lpar_lt,     16 17,    DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LCTRL), KEYS_L) //hrm combo
+ZMK_COMBO(rpar,  &rpar_gt,     17 18,    DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT),  KEYS_L) //hrm combo
+
+ZMK_COMBO(lbra,  &lbra_cur,    26 27,    DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(rbra,  &rbra_cur,    27 28,    DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+/* Vertical combos - left hand */
+ZMK_COMBO(at,    &kp AT,       1 11,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(hash,  &kp HASH,     2 12,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(prcnt, &kp PRCNT,    3 13,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+
+ZMK_COMBO(caret, &kp CARET,    11 21,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(equal, &kp EQUAL,    12 22,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(dllr,  &kp DLLR,     13 23,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(grave, &kp GRAVE,    14 24,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+
+/* Vertical combos - right hand */
+ZMK_COMBO(tilde, &kp TILDE,    5 15,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(plus,  &kp PLUS,     6 16,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(minus, &kp MINUS,    7 17,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(pipe,  &kp PIPE,     8 18,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+
+ZMK_COMBO(amps,  &kp AMPS,     15 25,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(star,  &kp STAR,     16 26,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(under, &kp UNDER,    17 27,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(bslh,  &kp BSLH,     18 28,    DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+

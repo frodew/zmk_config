@@ -1,0 +1,7 @@
+# Config for the fro-dux v1
+
+This config is basen on [andrewjrae's ZMK config and respective shield](https://github.com/andrewjrae/zmk-config) for the [rae-dux](https://github.com/andrewjrae/rae-dux) of which the fro-dux is based on.
+
+I mainly updated the workflow, because it was already two years old and forking the original project did not really work.
+
+My config is based on the [miryoku layout](https://github.com/manna-harbour/miryoku/tree/master/docs/reference) but has some nice tweaks, like additional combos or the option to write German "Umlaute". Still under development; let's see with what I end up with...

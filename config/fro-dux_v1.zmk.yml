@@ -1,0 +1,11 @@
+file_format: "1"
+id: fro-dux_v1
+name: fro-dux_v1
+type: shield
+url: https://github.com/frodew/fro-dux
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - fro-dux_v1_left
+  - fro-dux_v1_right

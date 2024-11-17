@@ -1,0 +1,185 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+
+#include <behaviors/num_word.dtsi> // requires auto-layer module in west.yml
+
+#define HOST_OS 1 // for Linux
+#include "zmk-helpers/helper.h" // requires helper module in west.yml
+
+/* German umlauts and currency */
+
+ZMK_UNICODE_PAIR(de_ae,     N0, N0, E, N4,  N0, N0, C,  N4) // ä/Ä
+ZMK_UNICODE_PAIR(de_oe,     N0, N0, F, N6,  N0, N0, D,  N6) // ö/Ö
+ZMK_UNICODE_PAIR(de_ue,     N0, N0, F, C,   N0, N0, D,  C) // ü/Ü
+ZMK_UNICODE_PAIR(de_eszett, N0, N0, D, F,   N1, E,  N9, E) // ß/ẞ
+ZMK_UNICODE_SINGLE(de_euro, N2, N0, A, C) // € (Euro)
+
+/* Define layer names */
+
+#define DEF 0
+#define NAV 1
+#define FN 2
+#define NUM 3
+#define UML 4
+
+/* Global settings */
+
+#define QUICK_TAP_MS 170
+
+&sk {  // sticky-key config
+    release-after-ms = <900>;  // release after 0.9s
+    quick-release;             // no double capitalization when rolling keys
+};
+
+&sl {  // sticky-layer config
+    ignore-modifiers;          // allow chording sticky mods & layers
+};
+
+/* Homerow mods */
+
+#define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24  // left hand
+#define KEYS_R 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29  // right hand
+#define THUMBS 30 31 32 33 34 35                        // thumb keys
+
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
+    ZMK_HOLD_TAP(NAME, \
+        flavor = "balanced"; \
+        tapping-term-ms = <270>; \
+        quick-tap-ms = <QUICK_TAP_MS>; \
+        require-prior-idle-ms = <130>; \
+        bindings = <HOLD>, <TAP>; \
+        hold-trigger-key-positions = <TRIGGER_POS>; \
+        hold-trigger-on-release; \
+    )
+
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
+
+// HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
+#define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
+    MAKE_HRM(hm_combo_ ## NAME, &kp, TAP, SIDE THUMBS) \
+    ZMK_COMBO_6(NAME, &hm_combo_ ## NAME HOLD 0, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE)
+
+/* Combos and leader key sequences */
+
+#include "combos.dtsi"  // must be sourced after HRM-combo hack
+
+/* Caps- and num-word */
+
+// tap: sticky-shift | shift + tap / double-tap: caps-word | hold: shift
+ZMK_MOD_MORPH(smart_shft,
+    bindings = <&sk LSHFT>, <&caps_word>;
+    mods = <(MOD_LSFT)>;
+)
+&caps_word {  // mods deactivate caps-word, requires PR #1451
+    /delete-property/ ignore-modifiers;
+};
+
+// tap: num-word | double-tap: sticky num-layer | hold: num-layer
+#define SMART_NUM &smart_num NUM 0
+ZMK_HOLD_TAP(smart_num,
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&num_dance>;
+)
+ZMK_TAP_DANCE(num_dance,
+    tapping-term-ms = <200>;
+    bindings = <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
+)
+
+/* Additional behaviors */
+
+// reuse basic mod-morph scheme
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
+    ZMK_MOD_MORPH(NAME, \
+        mods = <(MOD_L ## MOD|MOD_R ## MOD)>; \
+        bindings = <BINDING1>, <BINDING2>; \
+    )
+
+/* - used on keymap - */
+
+// tap: comma | shift + tap: !
+SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &kp EXCLAMATION)
+
+// tap: dot | shift + tap: ?
+SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &kp QUESTION)
+
+// tap: slash | shift + tap: slash
+SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
+
+// tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
+ZMK_MOD_MORPH(bs_del,
+    bindings = <&kp BSPC>, <&kp DEL>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+    keep-mods = <MOD_RSFT>;
+)
+
+/ { macros { u_macro_u_bt_sel_0: u_macro_u_bt_sel_0 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 0 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_0: u_bt_sel_0 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 0>, <&u_macro_u_bt_sel_0>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
+/ { macros { u_macro_u_bt_sel_1: u_macro_u_bt_sel_1 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 1 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_1: u_bt_sel_1 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 1>, <&u_macro_u_bt_sel_1>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
+/ { macros { u_macro_u_bt_sel_2: u_macro_u_bt_sel_2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 2 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_2: u_bt_sel_2 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&u_macro_u_bt_sel_2>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
+/ { macros { u_macro_u_bt_sel_3: u_macro_u_bt_sel_3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 3 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_3: u_bt_sel_3 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&u_macro_u_bt_sel_3>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
+
+/* - used in combos - */
+
+// tap: left/right parenthesis -()- | shft + tap: less-than/greater-than -<>-
+SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
+SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
+
+// tap: left/right bracket -[]- | shft + tap: left/right curly -{}-
+SIMPLE_MORPH(lbra_cur, SFT, &kp LBKT, &kp LBRC)
+SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
+
+/* Keymap */
+
+/ {
+  keymap {
+		compatible = "zmk,keymap";
+
+		base_layer {
+			bindings = <
+                   &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
+                   &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
+                   &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
+				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN ESC      /* &            & */
+			>;
+		};
+
+    nav_layer {
+      bindings = <
+                   &trans         &trans          &trans          &trans          &trans          &kp HOME        &kp PG_DN       &kp PG_UP       &kp END         &trans
+                   &trans         &trans          &trans          &trans          &trans          &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp K_CANCEL
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
+				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
+			>;
+    };
+
+    fn_and_media_layer {
+      bindings = <
+                   &trans         &kp C_MUTE      &kp C_STOP      &kp C_PP        &trans          &kp F12         &kp F7          &kp F8          &kp F9          &trans
+                   &kp C_PREV     &kp C_VOL_DN    &kp C_VOL_UP    &kp C_NEXT      &trans          &kp F11         &kp F4          &kp F5          &kp F6          &trans
+                   &u_bt_sel_0    &u_bt_sel_1     &u_bt_sel_2     &u_bt_sel_3     &trans          &kp F10         &kp F1          &kp F2          &kp F3          &trans
+				           /* &           & */            &kp K_APP       &trans          &trans          &trans          &trans          &trans          /* &            & */
+			>;
+    };
+
+		num_layer {
+      bindings = <
+                   &trans         &trans          &trans          &trans          &trans          &trans          &kp N7          &kp N8          &kp N9          &trans
+                   &trans         &trans          &trans          &trans          &trans          &trans          &hmr LALT N4    &hmr LCTRL N5   &hmr LSHFT N6   &hmr LGUI N0
+                   &trans         &trans          &trans          &trans          &trans          &trans          &kp N1          &kp N2          &kp N3          &trans
+				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
+			>;
+		};
+
+    umlaut_layer {
+			bindings = <
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &de_ue          &trans          &trans
+                   &de_ae         &trans          &de_eszett      &trans          &trans          &trans          &trans          &de_euro        &trans          &de_oe
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
+				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
+			>;
+	  };
+	};
+};
