@@ -7,7 +7,7 @@
    ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
            ╰────────────╯ ╰────────────╯        */
 
-#define COMBO_TERM_FAST 18
+#define COMBO_TERM_FAST 22
 #define COMBO_TERM_SLOW 30
 
 #define COMBO_IDLE_FAST 150
