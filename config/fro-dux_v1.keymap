@@ -193,9 +193,9 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
 
 		num_layer {
       bindings = <
-                   &trans         &trans          &trans          &trans          &trans          &trans          &kp N7          &kp N8          &kp N9          &trans
-                   &trans         &trans          &trans          &trans          &trans          &trans          &hmr LALT N4    &hmr LCTRL N5   &hmr LSHFT N6   &hmr LGUI N0
-                   &trans         &trans          &trans          &trans          &trans          &trans          &kp N1          &kp N2          &kp N3          &trans
+                   &trans         &kp N7          &kp N8          &kp N9          &trans          &trans          &kp N7          &kp N8          &kp N9          &trans
+                   &hmr LGUI N0   &hmr LALT N4    &hmr LCTRL N5   &hmr LSHFT N6   &trans          &trans          &hmr LALT N4    &hmr LCTRL N5   &hmr LSHFT N6   &hmr LGUI N0
+                   &trans         &kp N1          &kp N2          &kp N3          &trans          &trans          &kp N1          &kp N2          &kp N3          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
 		};
