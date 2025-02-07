@@ -56,13 +56,7 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 #include "combos.dtsi"  // must be sourced after HRM-combo hack
 
-/* Caps- and num-word */
-
-// tap: sticky-shift | hold: shift
-ZMK_MOD_MORPH(smart_shft,
-    bindings = <&sk LSHFT>, <&sk LSHFT>;
-    mods = <(MOD_LSFT)>;
-)
+/* Num-word */
 
 // tap: num-word | double-tap: sticky num-layer | hold: num-layer
 #define SMART_NUM &smart_num NUM 0
@@ -167,10 +161,10 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
 
 		base_layer {
 			bindings = <
-                   &kp Q          &kp W           &hml FN F       &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
+                   &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
                    &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
                    &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
-				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN DEL      /* &           & */
+				           /* &           & */            &bs_del         &sk LSHFT       SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN DEL      /* &           & */
 			>;
 		};
 
