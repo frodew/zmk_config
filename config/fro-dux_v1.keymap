@@ -4,16 +4,7 @@
 
 #include <behaviors/num_word.dtsi> // requires auto-layer module in west.yml
 
-#define HOST_OS 1 // for Linux
 #include "zmk-helpers/helper.h" // requires helper module in west.yml
-
-/* German umlauts and currency */
-
-ZMK_UNICODE_PAIR(de_ae,     N0, N0, E, N4,  N0, N0, C,  N4) // ä/Ä
-ZMK_UNICODE_PAIR(de_oe,     N0, N0, F, N6,  N0, N0, D,  N6) // ö/Ö
-ZMK_UNICODE_PAIR(de_ue,     N0, N0, F, C,   N0, N0, D,  C) // ü/Ü
-ZMK_UNICODE_PAIR(de_eszett, N0, N0, D, F,   N1, E,  N9, E) // ß/ẞ
-ZMK_UNICODE_SINGLE(de_euro, N2, N0, A, C) // € (Euro)
 
 /* Define layer names */
 
@@ -118,6 +109,45 @@ ZMK_MOD_MORPH(bs_del,
 / { macros { u_macro_u_bt_sel_2: u_macro_u_bt_sel_2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 2 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_2: u_bt_sel_2 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&u_macro_u_bt_sel_2>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 / { macros { u_macro_u_bt_sel_3: u_macro_u_bt_sel_3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 3 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_3: u_bt_sel_3 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&u_macro_u_bt_sel_3>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 
+// define German umlaute and symbols; needs composite key defined as RALT in operating system
+/ {
+  macros {
+    #define UNICODE_HACK(symbol, k1, k2) \
+      symbol: symbol { \
+          label = #symbol; \
+          compatible = "zmk,behavior-macro"; \
+          #binding-cells = <0>; \
+          wait-ms = <5>; \
+          tap-ms = <5>; \
+          bindings = <&macro_tap &kp RALT &kp k1 &kp k2>; \
+      };
+
+      // ä
+      UNICODE_HACK(xa, A, DQT)
+      // ö
+      UNICODE_HACK(xo, O, DQT)
+      // ü
+      UNICODE_HACK(xu, U, DQT)
+      // ß
+      UNICODE_HACK(xs, S, S)
+      // €
+      UNICODE_HACK(xe, E, EQUAL)
+
+    #define UNICODE_HACK_COMPOSE(symbol) \
+      symbol: symbol { \
+          label = #symbol; \
+          compatible = "zmk,behavior-macro"; \
+          #binding-cells = <0>; \
+          wait-ms = <5>; \
+          tap-ms = <5>; \
+        bindings = <&macro_tap &kp RALT &kp GRAVE>; \
+    };
+
+    // compose grave
+    UNICODE_HACK_COMPOSE(xg)
+  };
+};
+
 /* - used in combos - */
 
 // tap: left/right parenthesis -()- | shft + tap: less-than/greater-than -<>-
@@ -172,8 +202,8 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
 
     umlaut_layer {
 			bindings = <
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &de_ue          &trans          &trans
-                   &de_ae         &trans          &de_eszett      &trans          &trans          &trans          &trans          &de_euro        &trans          &de_oe
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &xu             &trans          &trans
+                   &xa            &trans          &xs             &trans          &xg             &trans          &trans          &xe             &trans          &xo
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
