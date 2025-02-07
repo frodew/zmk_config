@@ -60,7 +60,7 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 // tap: sticky-shift | hold: shift
 ZMK_MOD_MORPH(smart_shft,
-    bindings = <&sk LSHFT>;
+    bindings = <&sk LSHFT>, <&sk LSHFT>;
     mods = <(MOD_LSFT)>;
 )
 
@@ -103,6 +103,7 @@ ZMK_MOD_MORPH(bs_del,
     mods = <(MOD_LSFT|MOD_RSFT)>;
     keep-mods = <MOD_RSFT>;
 )
+
 
 / { macros { u_macro_u_bt_sel_0: u_macro_u_bt_sel_0 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 0 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_0: u_bt_sel_0 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 0>, <&u_macro_u_bt_sel_0>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 / { macros { u_macro_u_bt_sel_1: u_macro_u_bt_sel_1 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 1 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_1: u_bt_sel_1 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 1>, <&u_macro_u_bt_sel_1>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
@@ -166,10 +167,10 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
 
 		base_layer {
 			bindings = <
-                   &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
+                   &kp Q          &kp W           &hml FN F       &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
                    &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
                    &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
-				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN DEL      /* &            & */
+				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN DEL      /* &           & */
 			>;
 		};
 
