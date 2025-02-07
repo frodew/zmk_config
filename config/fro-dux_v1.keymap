@@ -142,7 +142,7 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
                    &kp Q          &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT
                    &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
                    &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
-				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN ESC      /* &            & */
+				           /* &           & */            &bs_del         &smart_shft     SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN DEL      /* &            & */
 			>;
 		};
 
