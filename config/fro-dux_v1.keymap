@@ -272,7 +272,7 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
     fn_and_media_layer {
       bindings = <
                    &trans         &kp C_MUTE      &kp C_STOP      &kp C_PP        &trans          &kp F12         &kp F7          &kp F8          &kp F9          &trans
-                   &kp C_BRI_DEC  &kp C_VOL_DN    &kp C_VOL_UP    &kp C_BRI_INC   &trans          &kp F11         &kp F4          &kp F5          &kp F6          &trans
+                   &kp C_BRI_DN   &kp C_VOL_DN    &kp C_VOL_UP    &kp C_BRI_UP    &trans          &kp F11         &kp F4          &kp F5          &kp F6          &trans
                    &u_bt_sel_0    &u_bt_sel_1     &u_bt_sel_2     &u_bt_sel_3     &trans          &kp F10         &kp F1          &kp F2          &kp F3          &trans
 				           /* &           & */            &kp K_APP       &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
