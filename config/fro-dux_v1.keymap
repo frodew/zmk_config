@@ -196,6 +196,7 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
   };
+};
 
 
 /* - used in combos - */
