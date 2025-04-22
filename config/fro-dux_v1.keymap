@@ -96,42 +96,54 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
 / { macros { u_macro_u_bt_sel_2: u_macro_u_bt_sel_2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 2 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_2: u_bt_sel_2 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&u_macro_u_bt_sel_2>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 / { macros { u_macro_u_bt_sel_3: u_macro_u_bt_sel_3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 3 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_3: u_bt_sel_3 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&u_macro_u_bt_sel_3>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 
-// define German umlaute and symbols; needs composite key defined as RALT in operating system
+// define German umlaute and symbols; previous version only worked on Linux - this works on Mac
 / {
   macros {
-    #define UNICODE_HACK(symbol, k1, k2) \
-      symbol: symbol { \
-          label = #symbol; \
-          compatible = "zmk,behavior-macro"; \
-          #binding-cells = <0>; \
-          wait-ms = <5>; \
-          tap-ms = <5>; \
-          bindings = <&macro_tap &kp RALT &kp k1 &kp k2>; \
-      };
-
-      // ä
-      UNICODE_HACK(xa, A, DQT)
-      // ö
-      UNICODE_HACK(xo, O, DQT)
-      // ü
-      UNICODE_HACK(xu, U, DQT)
-      // ß
-      UNICODE_HACK(xs, S, S)
-      // €
-      UNICODE_HACK(xe, E, EQUAL)
-
-    #define UNICODE_HACK_COMPOSE(symbol) \
-      symbol: symbol { \
-          label = #symbol; \
-          compatible = "zmk,behavior-macro"; \
-          #binding-cells = <0>; \
-          wait-ms = <5>; \
-          tap-ms = <5>; \
-        bindings = <&macro_tap &kp RALT &kp GRAVE>; \
+    // Macros for German umlauts on macOS
+    mac_a_umlaut: mac_a_umlaut {
+      label = "MAC_A_UMLAUT";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <30>;
+      tap-ms = <30>;
+      bindings = <&macro_press &kp LALT>, <&macro_tap &kp U>, <&macro_release &kp LALT>, <&macro_tap &kp A>;
     };
 
-    // compose grave
-    UNICODE_HACK_COMPOSE(xg)
+    mac_o_umlaut: mac_o_umlaut {
+      label = "MAC_O_UMLAUT";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <30>;
+      tap-ms = <30>;
+      bindings = <&macro_press &kp LALT>, <&macro_tap &kp U>, <&macro_release &kp LALT>, <&macro_tap &kp O>;
+    };
+
+    mac_u_umlaut: mac_u_umlaut {
+      label = "MAC_U_UMLAUT";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <30>;
+      tap-ms = <30>;
+      bindings = <&macro_press &kp LALT>, <&macro_tap &kp U>, <&macro_release &kp LALT>, <&macro_tap &kp U>;
+    };
+
+    mac_eszett: mac_eszett {
+      label = "MAC_ESZETT";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <30>;
+      tap-ms = <30>;
+      bindings = <&macro_press &kp LALT>, <&macro_tap &kp S>, <&macro_release &kp LALT>;
+    };
+
+    mac_euro: mac_euro {
+      label = "MAC_EURO";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <30>;
+      tap-ms = <30>;
+      bindings = <&macro_press &kp LALT>, <&macro_tap &kp LSHFT>, <&macro_tap &kp N2>, <&macro_release &kp LALT>, <&macro_release &kp LSHFT>;
+    };
   };
 };
 
@@ -189,8 +201,8 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
 
     umlaut_layer {
 			bindings = <
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &xu             &trans          &trans
-                   &kp LA(U)A     &trans          &xs             &trans          &xg             &trans          &trans          &xe             &trans          &xo
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &mac_u_umlaut   &trans          &trans
+                   &mac_a_umlaut  &trans          &mac_eszett     &trans          &trans          &trans          &trans          &mac_euro       &trans          &mac_o_umlaut
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
