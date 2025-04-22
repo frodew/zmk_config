@@ -190,7 +190,7 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
     umlaut_layer {
 			bindings = <
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &xu             &trans          &trans
-                   &xa            &trans          &xs             &trans          &xg             &trans          &trans          &xe             &trans          &xo
+                   &kp LA(U)A     &trans          &xs             &trans          &xg             &trans          &trans          &xe             &trans          &xo
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
