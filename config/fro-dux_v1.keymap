@@ -4,6 +4,12 @@
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1100
 #include <dt-bindings/zmk/pointing.h> // include mouse emulation
+&mmv {
+    x-input-code = <INPUT_REL_X>;
+    y-input-code = <INPUT_REL_Y>;
+    time-to-max-speed-ms = <300>;
+    acceleration-exponent = <1>;
+};
 
 #include <behaviors/num_word.dtsi> // requires auto-layer module in west.yml
 
@@ -16,6 +22,7 @@
 #define FN 2
 #define NUM 3
 #define UML 4
+#define MM 5
 
 /* Global settings */
 
@@ -259,7 +266,7 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
                    &hml CAPS Q    &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &hmr CAPS SQT
                    &hml LGUI A    &hml LALT R     &hml LCTRL S    &hml LSHFT T    &kp G           &kp M           &hmr LSHFT N    &hmr LCTRL E    &hmr LALT I     &hmr LGUI O
                    &kp Z          &kp X           &kp C           &kp D           &kp V           &kp K           &kp H           &comma_morph    &dot_morph      &slash_morph
-				           /* &           & */            &kp BSPC        &kp LSHFT       SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN DEL      /* &           & */
+				           /* &           & */            &lt MM BSPC     &kp LSHFT       SMART_NUM       &lt NAV RET     &lt UML SPACE   &lt FN DEL      /* &           & */
 			>;
 		};
 
@@ -267,7 +274,7 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
       bindings = <
                    &trans         &trans          &trans          &trans          &trans          &kp LC(LEFT)    &kp PG_DN       &kp PG_UP       &kp LC(RIGHT)   &trans
                    &trans         &trans          &mkp RCLK       &mkp LCLK       &trans          &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp K_CANCEL
-                   &trans         &trans          &trans          &trans          &trans          &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP    &mmv MOVE_RIGHT &trans
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
     };
@@ -296,6 +303,15 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
                    &uml_a_morph   &trans          &mac_ss         &trans          &trans          &trans          &trans          &mac_eur        &trans          &uml_o_morph
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
+			>;
+	  };
+
+		mouse_layer {
+			bindings = <
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
+                   &trans         &trans          &trans          &trans          &trans          &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP    &mmv MOVE_RIGHT &trans
+                   &trans         &trans          &trans          &trans          &trans          &trans          &msc SCRL_DOWN  &msc SCRL_UP    &trans          &trans
+				           /* &           & */            &trans          &trans          &trans          &mkp LCLK       &mkp RCLK       &trans          /* &            & */
 			>;
 	  };
 	};
