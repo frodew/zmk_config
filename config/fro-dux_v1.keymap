@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1100
 #include <dt-bindings/zmk/pointing.h> // include mouse emulation
 
 #include <behaviors/num_word.dtsi> // requires auto-layer module in west.yml
@@ -105,39 +106,39 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
     mac_a_uml_lower: mac_a_uml_lower {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT>,
         <&macro_tap &kp U>,
         <&macro_release &kp LALT>,
-        <&macro_wait_time 30>,
+        <&macro_wait_time 10>,
         <&macro_tap &kp A>;
     };
 
     mac_o_uml_lower: mac_o_uml_lower {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT>,
         <&macro_tap &kp U>,
         <&macro_release &kp LALT>,
-        <&macro_wait_time 30>,
+        <&macro_wait_time 10>,
         <&macro_tap &kp O>;
     };
 
     mac_u_uml_lower: mac_u_uml_lower {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT>,
         <&macro_tap &kp U>,
         <&macro_release &kp LALT>,
-        <&macro_wait_time 30>,
+        <&macro_wait_time 10>,
         <&macro_tap &kp U>;
     };
 
@@ -145,13 +146,13 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
     mac_a_uml_upper: mac_a_uml_upper {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT>,
         <&macro_tap &kp U>,
         <&macro_release &kp LALT>,
-        <&macro_wait_time 30>,
+        <&macro_wait_time 10>,
         <&macro_press &kp LSHFT>,
         <&macro_tap &kp A>,
         <&macro_release &kp LSHFT>;
@@ -160,13 +161,13 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
     mac_o_uml_upper: mac_o_uml_upper {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT>,
         <&macro_tap &kp U>,
         <&macro_release &kp LALT>,
-        <&macro_wait_time 30>,
+        <&macro_wait_time 10>,
         <&macro_press &kp LSHFT>,
         <&macro_tap &kp O>,
         <&macro_release &kp LSHFT>;
@@ -175,13 +176,13 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
     mac_u_uml_upper: mac_u_uml_upper {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT>,
         <&macro_tap &kp U>,
         <&macro_release &kp LALT>,
-        <&macro_wait_time 30>,
+        <&macro_wait_time 10>,
         <&macro_press &kp LSHFT>,
         <&macro_tap &kp U>,
         <&macro_release &kp LSHFT>;
@@ -191,8 +192,8 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
     mac_ss: mac_ss {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT>,
         <&macro_tap &kp S>,
@@ -203,8 +204,8 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
     mac_eur: mac_eur {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      wait-ms = <30>;
-      tap-ms = <30>;
+      wait-ms = <10>;
+      tap-ms = <10>;
       bindings =
         <&macro_press &kp LALT &kp LSHFT>,
         <&macro_tap &kp N2>,
