@@ -14,11 +14,8 @@ manifest:
       revision: main
       path: modules/helpers
     - name: zmk
-      remote: urob
-      revision: going-modular
-      path: .
-      import:
-        file: app/west.yml
-        path-prefix: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
   self:
     path: config
