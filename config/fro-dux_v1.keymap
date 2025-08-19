@@ -107,145 +107,6 @@ SIMPLE_MORPH(slash_morph, SFT, &kp SLASH, &kp SLASH)
 / { macros { u_macro_u_bt_sel_2: u_macro_u_bt_sel_2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 2 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_2: u_bt_sel_2 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>, <&u_macro_u_bt_sel_2>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 / { macros { u_macro_u_bt_sel_3: u_macro_u_bt_sel_3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <0>; bindings = <&bt BT_SEL 3 &bt BT_CLR>; }; }; }; / { behaviors { u_bt_sel_3: u_bt_sel_3 { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>, <&u_macro_u_bt_sel_3>; mods = <(MOD_LSFT|MOD_RSFT)>; }; }; };
 
-// define German umlaute and symbols; previous version only worked on Linux - this works on Mac
-/ {
-  macros {
-    // Lowercase umlauts
-    mac_a_uml_lower: mac_a_uml_lower {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp U>,
-        <&macro_release &kp LALT>,
-        <&macro_wait_time 10>,
-        <&macro_tap &kp A>;
-    };
-
-    mac_o_uml_lower: mac_o_uml_lower {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp U>,
-        <&macro_release &kp LALT>,
-        <&macro_wait_time 10>,
-        <&macro_tap &kp O>;
-    };
-
-    mac_u_uml_lower: mac_u_uml_lower {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp U>,
-        <&macro_release &kp LALT>,
-        <&macro_wait_time 10>,
-        <&macro_tap &kp U>;
-    };
-
-    // Uppercase umlauts
-    mac_a_uml_upper: mac_a_uml_upper {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp U>,
-        <&macro_release &kp LALT>,
-        <&macro_wait_time 10>,
-        <&macro_press &kp LSHFT>,
-        <&macro_tap &kp A>,
-        <&macro_release &kp LSHFT>;
-    };
-
-    mac_o_uml_upper: mac_o_uml_upper {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp U>,
-        <&macro_release &kp LALT>,
-        <&macro_wait_time 10>,
-        <&macro_press &kp LSHFT>,
-        <&macro_tap &kp O>,
-        <&macro_release &kp LSHFT>;
-    };
-
-    mac_u_uml_upper: mac_u_uml_upper {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp U>,
-        <&macro_release &kp LALT>,
-        <&macro_wait_time 10>,
-        <&macro_press &kp LSHFT>,
-        <&macro_tap &kp U>,
-        <&macro_release &kp LSHFT>;
-    };
-
-    // Sharp S
-    mac_ss: mac_ss {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp S>,
-        <&macro_release &kp LALT>;
-    };
-
-    // Euro symbol
-    mac_eur: mac_eur {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <10>;
-      tap-ms = <10>;
-      bindings =
-        <&macro_press &kp LALT &kp LSHFT>,
-        <&macro_tap &kp N2>,
-        <&macro_release &kp LSHFT &kp LALT>;
-    };
-  };
-
-  behaviors {
-    uml_a_morph: uml_a_morph {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&mac_a_uml_lower>, <&mac_a_uml_upper>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-
-    uml_o_morph: uml_o_morph {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&mac_o_uml_lower>, <&mac_o_uml_upper>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-
-    uml_u_morph: uml_u_morph {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&mac_u_uml_lower>, <&mac_u_uml_upper>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-  };
-};
-
-
 /* - used in combos - */
 
 // tap: left/right parenthesis -()- | shft + tap: less-than/greater-than -<>-
@@ -300,8 +161,8 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
 
     umlaut_layer {
 			bindings = <
-                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &uml_u_morph    &trans          &trans
-                   &uml_a_morph   &trans          &mac_ss         &trans          &trans          &trans          &trans          &mac_eur        &trans          &uml_o_morph
+                   &trans         &trans          &trans          &trans          &trans          &trans          &trans          &kp LA(U)       &trans          &trans
+                   &kp LA(A)      &trans          &kp LA(S)       &trans          &trans          &trans          &trans          &kp LA(E)       &trans          &kp LA(O)
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
