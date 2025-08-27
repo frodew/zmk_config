@@ -135,7 +135,7 @@ SIMPLE_MORPH(rbra_cur, SFT, &kp RBKT, &kp RBRC)
     nav_layer {
       bindings = <
                    &trans         &trans          &trans          &trans          &trans          &kp LC(LEFT)    &kp PG_DN       &kp PG_UP       &kp LC(RIGHT)   &trans
-                   &trans         &trans          &mkp RCLK       &mkp LCLK       &trans          &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp K_CANCEL
+                   &trans         &trans          &trans          &trans          &trans          &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp K_CANCEL
                    &trans         &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
 				           /* &           & */            &trans          &trans          &trans          &trans          &trans          &trans          /* &            & */
 			>;
